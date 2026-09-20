@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_users_form_allowed_pos" model="ir.ui.view">
+        <field name="name">res.users.form.allowed.pos</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <!-- Seuls les administrateurs / paramètres voient et éditent cet
+             onglet : c'est ce qui empêche un utilisateur normal de
+             s'auto-attribuer l'accès à d'autres POS. -->
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Point of Sale" name="allowed_pos_page">
+                    <group>
+                        <field name="allowed_pos_ids" widget="many2many_tags"
+                               options="{'no_create': True}"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

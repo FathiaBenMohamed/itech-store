@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_create_so.ControlButtons" t-inherit="point_of_sale.ControlButtons"
+       t-inherit-mode="extension">
+        <xpath expr="//button[./i[@class='fa fa-link me-1']]" position="before">
+            <button t-if="pos.config.create_so and this.pos.cashier._role != 'minimal'" class="btn btn-secondary btn-lg py-5"
+                    t-on-click="() => this.clickCreateSaleOrder()">
+                <i class="o_button_icon fa fa-fw fa-pencil-square-o" aria-hidden="true"/>
+                Create Sale Order
+            </button>
+        </xpath>
+    </t>
+</templates>

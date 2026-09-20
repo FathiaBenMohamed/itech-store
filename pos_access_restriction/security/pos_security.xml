@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- =====================================================
+             pos.config
+             ===================================================== -->
+        <record id="rule_pos_config_allowed_pos_users" model="ir.rule">
+            <field name="name">POS Config: restrict to allowed POS (regular users)</field>
+            <field name="model_id" ref="point_of_sale.model_pos_config"/>
+            <field name="domain_force">[('assigned_user_ids','in',user.id),('company_id', 'in', company_ids)]</field>
+            <field name="groups" eval="[(4, ref('point_of_sale.group_pos_user'))]"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_create">1</field>
+            <field name="perm_unlink">1</field>
+        </record>
+
+        <record id="rule_pos_config_full_access_managers" model="ir.rule">
+            <field name="name">POS Config: full access for POS Administrators</field>
+            <field name="model_id" ref="point_of_sale.model_pos_config"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('point_of_sale.group_pos_manager'))]"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_create">1</field>
+            <field name="perm_unlink">1</field>
+        </record>
+
+        <!-- =====================================================
+             pos.order
+             ===================================================== -->
+        <record id="rule_pos_order_full_access_managers" model="ir.rule">
+            <field name="name">POS Order: full access for POS Administrators</field>
+            <field name="model_id" ref="point_of_sale.model_pos_order"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('point_of_sale.group_pos_manager'))]"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_create">1</field>
+            <field name="perm_unlink">1</field>
+        </record>
+
+        <record id="rule_pos_order_own_orders_only" model="ir.rule">
+            <field name="name">POS Order: own orders only (cashiers)</field>
+            <field name="model_id" ref="point_of_sale.model_pos_order"/>
+            <field name="domain_force">['&amp;', ('config_id.assigned_user_ids', 'in', user.id), ('user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('point_of_sale.group_pos_user'))]"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_create">1</field>
+            <field name="perm_unlink">0</field>
+        </record>
+
+        <!-- =====================================================
+             pos.payment
+             ===================================================== -->
+        <record model="ir.ui.menu" id="point_of_sale.menu_pos_payment">
+            <field name="group_ids" eval="[Command.set([ref('point_of_sale.group_pos_manager')])]"/>
+        </record>
+
+        <!-- =====================================================
+             pos.session
+             ===================================================== -->
+        <record model="ir.ui.menu" id="point_of_sale.menu_pos_session_all">
+            <field name="group_ids" eval="[Command.set([ref('point_of_sale.group_pos_manager')])]"/>
+        </record>
+
+        <!-- =====================================================
+             Menu Analyse
+             ===================================================== -->
+        <record model="ir.ui.menu" id="point_of_sale.menu_point_rep">
+            <field name="group_ids" eval="[Command.set([ref('point_of_sale.group_pos_manager')])]"/>
+        </record>
+
+    </data>
+</odoo>
