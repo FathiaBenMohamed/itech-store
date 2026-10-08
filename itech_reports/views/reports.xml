@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="itech_report_invoice_document" inherit_id="account.report_invoice_document">
+        <xpath expr="//p[@t-if='o.company_id.display_invoice_amount_total_words']" position="replace"/>
+        <xpath expr="//p[@name='payment_communication']" position="replace"/>
+        <xpath expr="//div[hasclass('row')][1]" position="replace">
+            <div class="row">
+                <div class="col-5"
+                     style="border: 1px solid; padding: 10px; margin-bottom: 10px;">
+                    <strong t-if="o.move_type == 'out_invoice' or o.move_type == 'in_invoice'">FACTURE
+                        N°:
+                    </strong>
+                    <strong t-elif="o.move_type == 'out_refund' or o.move_type == 'in_refund'">Avoir N°:
+                    </strong>
+                    <span t-field="o.name"/>
+                    <br/>
+                    <strong>Date:</strong>
+                    <span t-field="o.invoice_date"/>
+                    <br/>
+                </div>
+                <div class="col-1"/>
+                <div class="col-6"
+                     style="border: 1px solid; padding: 10px; margin-bottom: 10px;">
+                    <strong>Code client:</strong>
+                    <span t-field="o.partner_id.ref"/>
+                    <br/>
+                    <strong>Client:</strong>
+                    <span t-field="o.partner_id.name"/>
+                    <br/>
+                    <strong>Adresse:</strong>
+                    <span t-field="o.partner_id.street"/>
+                    <br/>
+                    <strong>Ville:</strong>
+                    <span t-field="o.partner_id.city"/>
+                    <br/>
+                    <strong>Tél:</strong>
+                    <span t-field="o.partner_id.phone"/>
+                    <br/>
+                    <strong>M.F:</strong>
+                    <span t-field="o.partner_id.vat"/>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//div[@id='informations']" position="replace"/>
+        <xpath expr="//t[@t-set='layout_document_title']" position="replace"/>
+        <xpath expr="//t[@t-set='show_qr']" position="before">
+            <div class="mb-3">
+                <p class="fw-bold" t-if="o.company_id.display_invoice_amount_total_words">
+                    Arrêtée la présente facture à la somme de :
+                    <br/>
+                    <strong class="text-muted lh-sm">
+                        <span t-field="o.amount_total_words" class="fw-bold"/>
+                    </strong>
+                </p>
+            </div>
+        </xpath>
+        <xpath expr="//div[@id='payment_term']" position="after">
+            <div class="row justify-content-center mt-4">
+                <div class="col-5">
+                    Cachet et Signature
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//table[@name='invoice_line_table']" position="replace">
+            <table class="table table-bordered" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th name="th_ref" class="text-start">
+                            <span>Réf.</span>
+                        </th>
+                        <th name="th_description" class="text-start">
+                            <span>Libellé</span>
+                        </th>
+                        <th name="th_quantity" class="text-end">
+                            <span>Qté</span>
+                        </th>
+                        <th name="th_unit" class="text-end">
+                            <span>U</span>
+                        </th>
+                        <th name="th_priceunit_ht" class="text-end">
+                            <span>PU HT</span>
+                        </th>
+                        <th name="th_discount" t-if="display_discount"
+                            t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                            <span>Rem.%</span>
+                        </th>
+                        <th name="th_priceunit_ht_net" class="text-end">
+                            <span>PU HT net</span>
+                        </th>
+                        <th name="th_taxes" t-if="display_taxes"
+                            t-attf-class="text-end">
+                            <span>TVA</span>
+                        </th>
+                        <th name="th_subtotal_ht" class="text-end">
+                            <span>Total HT</span>
+                        </th>
+                        <th name="th_subtotal_ttc" class="text-end">
+                            <span>Total TTC</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="invoice_tbody">
+                    <t t-set="lines"
+                       t-value="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"/>
+                    <t t-foreach="lines_to_report.filtered(lambda l: not l.is_tax_stamp)" t-as="line">
+                        <t t-set="is_product" t-value="line.display_type == 'product'"/>
+                        <t>
+                            <tr>
+                                <t t-if="is_product" name="account_invoice_line_accountable">
+                                    <td name="account_invoice_line_default_code">
+                                        <span t-if="line.product_id.default_code" t-field="line.product_id.default_code"
+                                              t-options="{'widget': 'text'}"
+                                              dir="auto"/>
+                                    </td>
+                                    <td name="account_invoice_line_name">
+                                        <span t-if="line.product_id.name" t-field="line.product_id.name"
+                                              t-options="{'widget': 'text'}"
+                                              dir="auto"/>
+                                    </td>
+                                    <td name="td_quantity">
+                                        <span t-field="line.quantity" class="text-nowrap"/>
+                                    </td>
+                                    <td name="td_unit">
+                                        <span t-field="line.product_uom_id"/>
+                                    </td>
+                                    <td name="td_price_unit">
+                                        <span class="text-nowrap" t-field="line.price_unit"/>
+                                    </td>
+                                    <td name="td_discount">
+                                        <span class="text-nowrap" t-field="line.discount"/>
+                                    </td>
+                                    <td name="td_priceunit_ht_net">
+                                        <span class="text-nowrap"
+                                              t-esc="'%.3f'% (line.price_subtotal / line.quantity)"/>
+                                    </td>
+                                    <t t-set="taxes"
+                                       t-value="', '.join(tax.tax_label for tax in line.tax_ids if tax.tax_label)"/>
+                                    <td name="td_taxes" t-if="display_taxes"
+                                        t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }} {{ 'text-nowrap' if len(taxes) &lt; 10 else '' }}">
+                                        <span t-out="taxes" id="line_tax_ids"/>
+                                    </td>
+                                    <td name="td_subtotal" class="text-end o_price_total">
+                                        <span class="text-nowrap" t-field="line.price_subtotal"/>
+                                    </td>
+                                    <td name="td_total" class="text-end o_price_total">
+                                        <span class="text-nowrap" t-field="line.price_total"/>
+                                    </td>
+                                </t>
+                            </tr>
+                        </t>
+                    </t>
+                </tbody>
+            </table>
+        </xpath>
+    </template>
+</odoo>
