@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="itech_report_invoice_document">
+        <t t-call="web.external_layout">
+            <t t-set="o" t-value="o.with_context(lang=lang)"/>
+            <div class="page">
+                <div class="row">
+                    <div class="col-5"
+                         style="border: 1px solid; padding: 10px; margin-bottom: 10px;">
+                        <strong t-if="o.move_type == 'out_invoice' or o.move_type == 'in_invoice'">FACTURE
+                            N°:
+                        </strong>
+                        <strong t-elif="o.move_type == 'out_refund' or o.move_type == 'in_refund'">Avoir N°:
+                        </strong>
+                        <span t-field="o.name"/>
+                        <br/>
+                        <strong>Date:</strong>
+                        <span t-field="o.invoice_date"/>
+                        <br/>
+                    </div>
+                    <div class="col-1"/>
+                    <div class="col-6"
+                         style="border: 1px solid; padding: 10px; margin-bottom: 10px;">
+                        <strong>Code client:</strong>
+                        <span t-field="o.partner_id.ref"/>
+                        <br/>
+                        <strong>Client:</strong>
+                        <span t-field="o.partner_id.name"/>
+                        <br/>
+                        <strong>Adresse:</strong>
+                        <span t-field="o.partner_id.street"/>
+                        <br/>
+                        <strong>Ville:</strong>
+                        <span t-field="o.partner_id.city"/>
+                        <br/>
+                        <strong>Tél:</strong>
+                        <span t-field="o.partner_id.phone"/>
+                        <br/>
+                        <strong>M.F:</strong>
+                        <span t-field="o.partner_id.vat"/>
+                    </div>
+                </div>
+                <t t-set="lines_to_report" t-value="o._get_move_lines_to_report()"/>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Réf.</th>
+                            <th>Libellé</th>
+                            <th>Qté</th>
+                            <th>U</th>
+                            <th>PU TTC</th>
+                            <th>Rem.%</th>
+                            <th>PU HT net</th>
+                            <th>TVA</th>
+                            <th>TOT Net HT</th>
+                            <th>Total TTC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="lines"
+                           t-value="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"/>
+                        <t t-foreach="lines_to_report.filtered(lambda l: not l.is_tax_stamp)" t-as="line">
+                            <t t-set="is_note" t-value="line.display_type == 'line_note'"/>
+                            <t t-set="is_section" t-value="line.display_type == 'line_section'"/>
+                            <t t-set="is_subsection" t-value="line.display_type == 'line_subsection'"/>
+                            <t t-set="is_product" t-value="line.display_type == 'product'"/>
+                            <t>
+                                <tr>
+                                    <t t-if="is_product" name="account_invoice_line_accountable">
+                                        <td name="account_invoice_line_default_code">
+                                            <span t-if="line.product_id.default_code" class="text-start"
+                                                  t-field="line.product_id.default_code"/>
+                                        </td>
+                                        <td name="account_invoice_line_name">
+                                            <span t-if="line.product_id.name" class="text-start text-nowrap"
+                                                  t-field="line.product_id.name"/>
+                                        </td>
+                                        <td name="td_quantity">
+                                            <span t-field="line.quantity" class="text-nowrap"/>
+                                        </td>
+                                        <td name="td_unit">
+                                            <span t-field="line.product_uom_id"/>
+                                        </td>
+                                        <td name="td_price_unit">
+                                            <span class="text-nowrap" t-field="line.price_unit"/>
+                                        </td>
+                                        <td name="td_discount">
+                                            <span class="text-nowrap" t-field="line.discount"/>
+                                        </td>
+                                        <td name="td_priceunit_ht_net">
+                                            <span class="text-nowrap" t-field="line.price_unit_ht_net"/>
+                                        </td>
+                                        <t t-set="taxes"
+                                           t-value="', '.join(tax.tax_label for tax in line.tax_ids if tax.tax_label)"/>
+                                        <td name="td_taxes" class="text-end">
+                                            <span t-out="taxes" id="line_tax_ids"/>
+                                        </td>
+                                        <td name="td_subtotal" class="text-end o_price_total">
+                                            <span class="text-nowrap" t-field="line.price_subtotal"/>
+                                        </td>
+                                        <td name="td_total" class="text-end o_price_total">
+                                            <span class="text-nowrap" t-field="line.price_total"/>
+                                        </td>
+                                    </t>
+                                    <t t-elif="line.display_type in ('line_section', 'line_subsection')">
+                                        <td colspan="10">
+                                            <span t-if="line.name" t-field="line.name"
+                                                  t-options="{'widget': 'text'}" dir="auto"/>
+                                        </td>
+                                    </t>
+                                    <t t-elif="is_note">
+                                        <td colspan="10">
+                                            <span t-if="line.name" t-field="line.name"
+                                                  t-options="{'widget': 'text'}" dir="auto"/>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </t>
+                        </t>
+                    </tbody>
+                </table>
+                <div class="row avoid-page-break-inside" style="margin-top: 20px;">
+                    <div class="col-5 avoid-page-break-inside">
+                        <table class="table table-bordered" style="font-size: 12px !important; width: 80%;">
+                            <thead>
+                                <tr>
+                                    <th>Base HT</th>
+                                    <th>TVA</th>
+                                    <th>Montant</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="currency" t-value="o.company_currency_id"/>
+                                <t t-set="tax_totals" t-value="o.tax_totals"/>
+                                <t t-foreach="tax_totals['subtotals']" t-as="subtotal">
+                                    <t t-foreach="subtotal['tax_groups']" t-as="tax_group">
+                                        <tr>
+                                            <td>
+                                                <span class="text-nowrap"
+                                                      t-out="tax_group['display_base_amount']"
+                                                      t-options='{"widget": "monetary", "display_currency": currency}'/>
+                                            </td>
+                                            <td>
+                                                <span class="text-nowrap" t-out="tax_group['group_name']"/>
+                                            </td>
+                                            <td class="text-end o_price_total">
+                                                <span class="text-nowrap"
+                                                      t-out="tax_group['tax_amount']"
+                                                      t-options='{"widget": "monetary", "display_currency": currency}'/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                        <div class="mb-3">
+                            <p class="fw-bold" t-if="o.company_id.display_invoice_amount_total_words">
+                                Arrêtée la présente facture à la somme de :
+                                <br/>
+                                <strong class="text-muted lh-sm">
+                                    <span t-field="o.amount_total_words" class="fw-bold"/>
+                                </strong>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-2"/>
+                    <div class="col-5 avoid-page-break-inside">
+                        <table class="o_total_table table table-bordered mb-0" style="width: 100%;">
+                            <tbody>
+                                <tr>
+                                    <th>Total Brut HT</th>
+                                    <td class="text-end">
+                                        <span t-field="o.total_ht_brut"
+                                              t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Total Remise</th>
+                                    <td class="text-end">
+                                        <span>
+                                            -
+                                            <span t-field="o.total_discount"
+                                                  t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Total Net HT</th>
+                                    <td class="text-end">
+                                        <span t-field="o.amount_untaxed"
+                                              t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Total Taxes</th>
+                                    <td class="text-end">
+                                        <span t-field="o.tva_without_stamp"
+                                              t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Total TTC</th>
+                                    <td class="text-end">
+                                        <t t-set="total_ttc" t-value="o.tva_without_stamp + o.amount_untaxed"/>
+                                        <span t-out="total_ttc"
+                                              t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Timbre Fiscal</th>
+                                    <td class="text-end">
+                                        <span t-field="o.amount_stamp_tax"
+                                              t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                </tr>
+                                <tr class="o_total">
+                                    <th>TOTAL Net à payer</th>
+                                    <td class="text-end">
+                                        <span t-field="o.amount_total"
+                                              t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br/>
+                <div class="row justify-content-center mt-4">
+                    <div class="col-4 text-center">
+                        Cachet et Signature
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_invoice" inherit_id="account.report_invoice">
+        <xpath expr='//t[@t-call="account.report_invoice_document"]' position="after">
+            <t t-elif="o._get_name_invoice_report() == 'itech_reports.itech_report_invoice_document'"
+               t-call="itech_reports.itech_report_invoice_document"
+               t-lang="lang"/>
+        </xpath>
+    </template>
+</odoo>

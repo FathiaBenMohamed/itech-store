@@ -10,7 +10,8 @@
     "author": "Fathia BEN MOHAMED",
     "depends": ["account", "tax_stamp"],
     "data": [
-        "views/reports.xml",
+        "views/account_move_views.xml",
+        "views/report_invoice.xml",
     ],
     "license": "LGPL-3",
     "installable": True,
