@@ -1,0 +1,13 @@
+id,name,code,payment_type
+check_inbound,Chèque,check,inbound
+check_outbound,Chèque,check,outbound
+cash_inbound,Espèces,cash,inbound
+cash_outbound,Espèces,cash,outbound
+banknote_inbound,Traite,banknote,inbound
+banknote_outbound,Traite,banknote,outbound
+transfer_inbound,Virement,transfer,inbound
+transfer_outbound,Virement,transfer,outbound
+tpe_inbound,TPE,tpe,inbound
+tpe_outbound,TPE,tpe,outbound
+rs_inbound,Retenu à la source,rs,inbound
+rs_outbound,Retenu à la source,rs,outbound
