@@ -6,9 +6,7 @@ from odoo import api, fields, models
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
-    hide_stamp_zero_taxed = fields.Boolean(
-        compute="_compute_hide_stamp_zero_taxed", store=True
-    )
+    hide_stamp_zero_taxed = fields.Boolean(compute="_compute_hide_stamp_zero_taxed", store=True)
 
     is_tax_stamp = fields.Boolean(compute="_compute_is_tax_stamp")
 

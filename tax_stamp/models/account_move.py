@@ -16,9 +16,7 @@ class AccountMove(models.Model):
     def _compute_amount_stamp_tax(self):
         for record in self:
             record.amount_stamp_tax = sum(
-                record.invoice_line_ids.filtered(
-                    lambda line: line.is_tax_stamp
-                ).mapped(  # noqa: E501
+                record.invoice_line_ids.filtered(lambda line: line.is_tax_stamp).mapped(  # noqa: E501
                     "price_total"
                 )
             )

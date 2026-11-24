@@ -1,0 +1,67 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tax_stamp
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-24 10:56+0000\n"
+"PO-Revision-Date: 2026-11-24 10:56+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: tax_stamp
+#: model:ir.model.fields,field_description:tax_stamp.field_account_move__display_name
+#: model:ir.model.fields,field_description:tax_stamp.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:tax_stamp.field_product_template__display_name
+msgid "Display Name"
+msgstr "Nom d'affichage"
+
+#. module: tax_stamp
+#: model:ir.model.fields,field_description:tax_stamp.field_account_move_line__hide_stamp_zero_taxed
+msgid "Hide Stamp Zero Taxed"
+msgstr "Masquer le timbre fiscal à taux zéro"
+
+#. module: tax_stamp
+#: model:ir.model.fields,field_description:tax_stamp.field_account_move__id
+#: model:ir.model.fields,field_description:tax_stamp.field_account_move_line__id
+#: model:ir.model.fields,field_description:tax_stamp.field_product_template__id
+msgid "ID"
+msgstr ""
+
+#. module: tax_stamp
+#: model:ir.model.fields,field_description:tax_stamp.field_account_move_line__is_tax_stamp
+msgid "Is Tax Stamp"
+msgstr "Est un timbre fiscal"
+
+#. module: tax_stamp
+#: model:ir.model,name:tax_stamp.model_account_move
+msgid "Journal Entry"
+msgstr "Pièce comptable"
+
+#. module: tax_stamp
+#: model:ir.model,name:tax_stamp.model_account_move_line
+msgid "Journal Item"
+msgstr "Écriture comptable"
+
+#. module: tax_stamp
+#: model:ir.model.fields,field_description:tax_stamp.field_account_bank_statement_line__amount_stamp_tax
+#: model:ir.model.fields,field_description:tax_stamp.field_account_move__amount_stamp_tax
+msgid "Montant TF"
+msgstr "Montant TF"
+
+#. module: tax_stamp
+#: model:ir.model,name:tax_stamp.model_product_template
+msgid "Product"
+msgstr "Produit"
+
+#. module: tax_stamp
+#: model:ir.model.fields,field_description:tax_stamp.field_product_product__is_tax_stamp
+#: model:ir.model.fields,field_description:tax_stamp.field_product_template__is_tax_stamp
+msgid "Timbre Fiscal"
+msgstr "Timbre fiscal"
