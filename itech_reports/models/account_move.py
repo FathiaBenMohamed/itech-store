@@ -7,18 +7,18 @@ class AccountMove(models.Model):
     _inherit = "account.move"
 
     total_ht_brut = fields.Monetary(
-        string="Total Before Discount",
+        string="Total avant remise",
         compute="_compute_total_discount",
         store=True,
-        help="Sum of all line totals before applying discounts",
+        help="Somme des totaux de toutes les lignes avant application des remises.",
         currency_field="currency_id",
     )
 
     total_discount = fields.Monetary(
-        string="Total Discount",
+        string="Total des remises",
         compute="_compute_total_discount",
         store=True,
-        help="Sum of all discounts in the invoice lines",
+        help="Somme de toutes les remises appliquées sur les lignes de la facture.",
         currency_field="currency_id",
     )
 
@@ -52,8 +52,7 @@ class AccountMove(models.Model):
             ):
                 for line in invoice.invoice_line_ids:
                     if (
-                        line.display_type
-                        in ("line_section", "line_subsection", "line_note")
+                        line.display_type in ("line_section", "line_subsection", "line_note")
                         or line.is_tax_stamp
                     ):
                         continue
