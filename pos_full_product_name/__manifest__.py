@@ -3,8 +3,7 @@
 {
     "name": "POS Full Product Name",
     "summary": "Display full product name in the POS module.",
-    "description": "This module helps the user to display"
-    " full product name in the POS module.",
+    "description": "This module helps the user to display" " full product name in the POS module.",
     "author": "Fathia BEN MOHAMED",
     "category": "Point of Sale",
     "version": "19.0.1.0.0",
