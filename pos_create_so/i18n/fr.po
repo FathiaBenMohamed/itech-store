@@ -1,0 +1,181 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pos_create_so
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-24 10:08+0000\n"
+"PO-Revision-Date: 2026-11-24 10:08+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pos_create_so
+#: model_terms:ir.ui.view,arch_db:pos_create_so.res_config_settings_view_form
+msgid "Allow to Create sale order from pos"
+msgstr "Autoriser la création de commandes de vente depuis le point de vente"
+
+#. module: pos_create_so
+#: model:ir.model.fields,help:pos_create_so.field_pos_config__create_so
+#: model:ir.model.fields,help:pos_create_so.field_res_config_settings__pos_create_so
+msgid "Allow to create Sales Order in POS"
+msgstr "Autoriser la création de commandes de vente depuis le point de vente"
+
+#. module: pos_create_so
+#. odoo-javascript
+#: code:addons/pos_create_so/static/src/overrides/models/pos_store.js:0
+msgid "Are you sure you want to cancel ${"
+msgstr "Êtes-vous sûr de vouloir annuler ${"
+
+#. module: pos_create_so
+#. odoo-javascript
+#: code:addons/pos_create_so/static/src/app/control_buttons/control_buttons.js:0
+msgid "Backend did not return a valid response."
+msgstr "Le serveur n'a pas renvoyé de réponse valide."
+
+#. module: pos_create_so
+#. odoo-javascript
+#: code:addons/pos_create_so/static/src/overrides/models/pos_store.js:0
+msgid "Cancel Confirmation"
+msgstr "Confirmation d'annulation"
+
+#. module: pos_create_so
+#. odoo-javascript
+#: code:addons/pos_create_so/static/src/app/control_buttons/control_buttons.js:0
+msgid "Close"
+msgstr "Fermer"
+
+#. module: pos_create_so
+#: model:ir.model,name:pos_create_so.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de configuration"
+
+#. module: pos_create_so
+#. odoo-javascript
+#: code:addons/pos_create_so/static/src/app/control_buttons/control_buttons.js:0
+msgid "Confirm Order"
+msgstr "Confirmer la commande"
+
+#. module: pos_create_so
+#. odoo-javascript
+#: code:addons/pos_create_so/static/src/overrides/models/pos_store.js:0
+msgid "Confirmed"
+msgstr "Confirmé(e)"
+
+#. module: pos_create_so
+#. odoo-javascript
+#: code:addons/pos_create_so/static/src/app/control_buttons/control_buttons.js:0
+msgid "Could not create Sale Order. Check backend logs."
+msgstr "Impossible de créer la commande de vente. Vérifiez les journaux du serveur."
+
+#. module: pos_create_so
+#. odoo-javascript
+#: code:addons/pos_create_so/static/src/app/control_buttons/control_buttons.xml:0
+msgid "Create Sale Order"
+msgstr "Créer une commande de vente"
+
+#. module: pos_create_so
+#: model:ir.model.fields,field_description:pos_create_so.field_pos_config__create_so
+#: model:ir.model.fields,field_description:pos_create_so.field_res_config_settings__pos_create_so
+msgid "Create Sales Order"
+msgstr "Créer une commande de vente"
+
+#. module: pos_create_so
+#: model:ir.model.fields,field_description:pos_create_so.field_pos_config__display_name
+#: model:ir.model.fields,field_description:pos_create_so.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:pos_create_so.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Nom d'affichage"
+
+#. module: pos_create_so
+#. odoo-javascript
+#: code:addons/pos_create_so/static/src/app/control_buttons/control_buttons.js:0
+msgid "Error"
+msgstr "Erreur"
+
+#. module: pos_create_so
+#: model:ir.model.fields,field_description:pos_create_so.field_pos_config__id
+#: model:ir.model.fields,field_description:pos_create_so.field_res_config_settings__id
+#: model:ir.model.fields,field_description:pos_create_so.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: pos_create_so
+#. odoo-javascript
+#: code:addons/pos_create_so/static/src/app/control_buttons/control_buttons.js:0
+msgid "Missing Customer"
+msgstr "Client manquant"
+
+#. module: pos_create_so
+#. odoo-javascript
+#: code:addons/pos_create_so/static/src/app/control_buttons/control_buttons.js:0
+msgid "Missing Order"
+msgstr "Commande manquante"
+
+#. module: pos_create_so
+#. odoo-javascript
+#: code:addons/pos_create_so/static/src/app/control_buttons/control_buttons.js:0
+msgid "Missing Products"
+msgstr "Produits manquants"
+
+#. module: pos_create_so
+#. odoo-javascript
+#: code:addons/pos_create_so/static/src/overrides/models/pos_store.js:0
+msgid "No"
+msgstr "Non"
+
+#. module: pos_create_so
+#. odoo-javascript
+#: code:addons/pos_create_so/static/src/app/control_buttons/control_buttons.js:0
+msgid "No active order found."
+msgstr "Aucune commande active trouvée."
+
+#. module: pos_create_so
+#: model:ir.model,name:pos_create_so.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr "Configuration du point de vente"
+
+#. module: pos_create_so
+#. odoo-javascript
+#: code:addons/pos_create_so/static/src/app/control_buttons/control_buttons.js:0
+msgid "Sale Order ${"
+msgstr "Commande de vente ${"
+
+#. module: pos_create_so
+#: model:ir.model,name:pos_create_so.model_sale_order
+msgid "Sales Order"
+msgstr "Commande client"
+
+#. module: pos_create_so
+#. odoo-javascript
+#: code:addons/pos_create_so/static/src/app/control_buttons/control_buttons.js:0
+msgid "Select a customer."
+msgstr "Veuillez sélectionner un client."
+
+#. module: pos_create_so
+#. odoo-javascript
+#: code:addons/pos_create_so/static/src/app/control_buttons/control_buttons.js:0
+msgid "Success"
+msgstr "Succès"
+
+#. module: pos_create_so
+#. odoo-javascript
+#: code:addons/pos_create_so/static/src/app/control_buttons/control_buttons.js:0
+msgid "There are no products in the order."
+msgstr "La commande ne contient aucun produit."
+
+#. module: pos_create_so
+#: model_terms:ir.ui.view,arch_db:pos_create_so.sale_order_tree_inherited
+msgid "Total To Pay In POS"
+msgstr "Total à payer au point de vente"
+
+#. module: pos_create_so
+#. odoo-javascript
+#: code:addons/pos_create_so/static/src/overrides/models/pos_store.js:0
+msgid "Yes, Cancel"
+msgstr "Oui, annuler"
