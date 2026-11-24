@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_settle_due.ReceiptHeader" t-inherit="point_of_sale.ReceiptHeader" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('pos-receipt-customer')]" position="inside">
+            <div>
+                <t t-if="this.partnerInfos.totalDue != 0">
+                    <span t-if="this.partnerInfos.totalDue gt 0">
+                        Total due: <t t-esc="env.utils.formatCurrency(this.partnerInfos.totalDue)"/>
+                    </span>
+                    <span t-elif="this.partnerInfos.totalDue lt 0">
+                        Deposited: <t t-esc="env.utils.formatCurrency(-this.partnerInfos.totalDue)"/>
+                    </span>
+                </t>
+            </div>
+        </xpath>
+    </t>
+</templates>

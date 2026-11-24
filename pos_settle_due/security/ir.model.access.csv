@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_pos_move_readonly,account.move readonly_pos,account.model_account_move,pos_settle_due.group_account_readonly_pos,1,0,0,0
+access_account_pos_payment_readonly,account.payment readonly_pos,account.model_account_payment,pos_settle_due.group_account_readonly_pos,1,0,0,0
+access_account_pos_move_line_readonly,account.move.line readonly_pos,account.model_account_move_line,pos_settle_due.group_account_readonly_pos,1,0,0,0

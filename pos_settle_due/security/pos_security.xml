@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- =====================================================
+             account.move
+             ===================================================== -->
+        <record id="group_account_readonly_pos" model="res.groups">
+            <field name="name">Show Accounting Features For POS - Readonly</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="account.group_account_user" model="res.groups">
+            <field name="implied_ids" eval="[(4, ref('pos_settle_due.group_account_readonly_pos'))]"/>
+        </record>
+
+        <function model="ir.rule" name="write">
+            <value eval="[ref('account.account_analytic_line_rule_readonly_user')]"/>
+            <value eval="{'groups': [(4, ref('pos_settle_due.group_account_readonly_pos'))]}"/>
+        </function>
+
+        <function model="ir.rule" name="write">
+            <value eval="[ref('account.account_move_rule_group_readonly')]"/>
+            <value eval="{'groups': [(4, ref('pos_settle_due.group_account_readonly_pos'))]}"/>
+        </function>
+
+        <function model="ir.rule" name="write">
+            <value eval="[ref('account.account_move_line_rule_group_readonly')]"/>
+            <value eval="{'groups': [(4, ref('pos_settle_due.group_account_readonly_pos'))]}"/>
+        </function>
+
+    </data>
+</odoo>
