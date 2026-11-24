@@ -26,12 +26,17 @@ AUCUN point de vente. Les utilisateurs appartenant au groupe
 "Administrateur / Manager Point de Vente" ne sont pas soumis à cette
 restriction.
 """,
-    "depends": ["point_of_sale"],
+    "depends": ["point_of_sale", "pos_hr"],
     "data": [
         "security/pos_security.xml",
         "views/res_users_views.xml",
         "views/pos_config_views.xml",
     ],
+    "assets": {
+        "point_of_sale._assets_pos": [
+            "pos_access_restriction/static/src/**/*",
+        ],
+    },
     "installable": True,
     "application": False,
     "license": "LGPL-3",

@@ -1,0 +1,87 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pos_access_restriction
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-24 09:29+0000\n"
+"PO-Revision-Date: 2026-11-24 09:29+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pos_access_restriction
+#: model:ir.model.fields,field_description:pos_access_restriction.field_res_users__allowed_pos_ids
+msgid "Allowed POS"
+msgstr "Points de vente autorisés"
+
+#. module: pos_access_restriction
+#: model:ir.model.fields,field_description:pos_access_restriction.field_pos_config__assigned_user_ids
+msgid "Assigned Users"
+msgstr "Utilisateurs assignés"
+
+#. module: pos_access_restriction
+#: model:ir.model.fields,field_description:pos_access_restriction.field_pos_config__display_name
+#: model:ir.model.fields,field_description:pos_access_restriction.field_res_users__display_name
+msgid "Display Name"
+msgstr "Nom d'affichage"
+
+#. module: pos_access_restriction
+#: model:ir.model.fields,field_description:pos_access_restriction.field_pos_config__id
+#: model:ir.model.fields,field_description:pos_access_restriction.field_res_users__id
+msgid "ID"
+msgstr ""
+
+#. module: pos_access_restriction
+#: model_terms:ir.ui.view,arch_db:pos_access_restriction.view_users_form_allowed_pos
+msgid "Point of Sale"
+msgstr "Point de vente"
+
+#. module: pos_access_restriction
+#: model:ir.model,name:pos_access_restriction.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr "Configuration du point de vente"
+
+#. module: pos_access_restriction
+#: model:ir.model.fields,help:pos_access_restriction.field_res_users__allowed_pos_ids
+msgid ""
+"Points of Sale this user is allowed to open and use. If left empty, the user"
+" cannot access ANY Point of Sale (unless they belong to the POS "
+"Administrator/Manager group)."
+msgstr ""
+"Points de vente que cet utilisateur est autorisé à ouvrir et à utiliser."
+"Si ce champ est laissé vide, l'utilisateur ne pourra accéder à AUCUN point"
+" de vente (sauf s'il appartient au groupe des administrateurs/responsables du point de vente)."
+
+#. module: pos_access_restriction
+#: model_terms:ir.ui.view,arch_db:pos_access_restriction.pos_config_view_form_users
+msgid ""
+"Restrict some users to only access their assigned points of sale."
+msgstr ""
+"Restreindre l'accès de certains utilisateurs afin qu'ils puissent accéder"
+" uniquement aux points de vente qui leur sont assignés."
+
+#. module: pos_access_restriction
+#: model:ir.model,name:pos_access_restriction.model_res_users
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: pos_access_restriction
+#: model_terms:ir.ui.view,arch_db:pos_access_restriction.pos_config_view_form_users
+msgid "Users"
+msgstr "Utilisateurs"
+
+#. module: pos_access_restriction
+#: model:ir.model.fields,help:pos_access_restriction.field_pos_config__assigned_user_ids
+msgid "Users assigned to this Point of Sale."
+msgstr "Utilisateurs assignés à ce point de vente."
+
+#. module: pos_access_restriction
+#: model_terms:ir.ui.view,arch_db:pos_access_restriction.pos_config_view_form_users
+msgid "Users assigned to this point of sale"
+msgstr "Utilisateurs assignés à ce point de vente."

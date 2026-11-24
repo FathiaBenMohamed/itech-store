@@ -10,7 +10,7 @@
                 <block title="Users" groups="point_of_sale.group_pos_manager">
                     <setting
                         string="Users assigned to this point of sale"
-                        help="Restrict some users to only access their assigned points of sale. In order to apply the restriction, the user needs the 'User: Assigned POS Only' group"
+                        help="Restrict some users to only access their assigned points of sale."
                     >
                         <field
                             name="assigned_user_ids"
